@@ -37,11 +37,18 @@ public class Utils {
 		return N;
 	}
 
-	public static int getBitrate() {
-
+	/**
+	 * 获取比特率
+	 * 
+	 * @param h
+	 * @return
+	 */
+	public static int getBitrate(Header h) {
+		int v = h.version == Contants.MPEG1 ? 0 : 1;
+		return Tables.BitrateTable[v][h.lay][h.bitrate_index];
 	}
 
-	public static int getSamplingFrequency() {
-
+	public static int getSamplingFrequency(Header h) {
+		return Tables.SamplingRateTable[h.version][h.sampling_freq];
 	}
 }
